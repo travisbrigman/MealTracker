@@ -20,25 +20,29 @@ class FoodTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 3
+        return meals.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return meals[section].food.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath)
 
-        // Configure the cell...
-
+        let meal = meals[indexPath.section]
+        let food = meal.food[indexPath.row]
+        
+        cell.textLabel?.text = "\(food.meal)"
+        cell.detailTextLabel?.text = "\(food.description)"
+        
         return cell
     }
  
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        <#code#>
+        return meals[section].name
     }
 
 }
